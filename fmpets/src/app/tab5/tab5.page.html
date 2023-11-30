@@ -1,0 +1,24 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tab4"></ion-back-button> <!-- Flecha de volver atrás -->
+    </ion-buttons>
+    <ion-title>Reserva</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item>
+    <ion-label>Médico</ion-label>
+    <ion-select [(ngModel)]="selectedDoctor">
+      <ion-select-option *ngFor="let doctor of doctors" [value]="doctor._id">{{ doctor.nombres }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Fecha y Hora de Reserva</ion-label>
+    <ion-datetime displayFormat="DD MMM YYYY HH:mm" minuteValues="0,30" [(ngModel)]="myDate"></ion-datetime>
+  </ion-item>
+
+  <ion-button (click)="bookAppointment()">Reservar</ion-button>
+</ion-content>

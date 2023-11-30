@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Inicio
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="custom-background">
+  <div class="content-container">
+    <ion-img
+      src="assets/logofmpets.jpg"
+      alt="logo"
+      ></ion-img>
+      <div class="app-name">
+        FM Pets
+      </div>
+      <ion-button expand="block" shape="round" class="Bienvenido" [routerLink]="['/tabs/tab2']">
+        Iniciar Sesión
+      </ion-button>
+      <ion-button expand="block" shape="round" class="Bienvenido" [routerLink]="['/tabs/tab3']">
+        Crear Usuario
+      </ion-button>
+    </div>
+  </ion-content>

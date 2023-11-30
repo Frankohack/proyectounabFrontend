@@ -1,0 +1,59 @@
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+  }
+  
+  ion-input {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  ion-icon[name="eye-outline"] {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+  
+  .forgot-password,
+  .signup-text {
+    margin-top: 10px;
+    color: gray;
+    text-align: center;
+    font-size: 14px;
+  }
+  
+  .login-button {
+    --background: #007bff;
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  .avatar-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .avatar-container {
+    display: flex;
+  }
+  
+  .iniciounica{
+    margin-top: 500px;
+    width: 300%;
+    margin: 100px auto;
+  }
+  .iniciogoogle {
+    margin-top: 50px;
+    width: 600%;
+    margin: 10px auto;
+    align-items: 200%;
+  }
+  

@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tab4"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form (ngSubmit)="saveProfileChanges()">
+    <form>
+   
+      <ion-input [(ngModel)]="userProfile.name" name="name" class="red-text">Cambiar nombre</ion-input>
+      <ion-input [(ngModel)]="userProfile.email" name="email" class="red-text">Cambiar Correo</ion-input>
+      
+ 
+    </form>
+   
+    <ion-button expand="block" type="submit">Guardar Cambios</ion-button>
+  </form>
+
+  <input type="file" (change)="onFileChanged($event)" />
+  
+  <img [src]="userProfile.profileImage" *ngIf="userProfile.profileImage" />
+
+  <ion-button (click)="takePhoto()">Tomar foto</ion-button>
+</ion-content>
