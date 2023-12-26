@@ -21,41 +21,53 @@ export class Tab2Page {
   }
 
   enviarSolicitud() {
+    if (!this.validateEmail(this.usuario)) {
+      this.mostrarAlerta('Correo inválido', 'Por favor, ingresa un correo electrónico válido.');
+      return;
+    }
     const backendUrl = 'http://localhost:3000';
-    const verificarUsuarioUrl = `${backendUrl}/usuario`;
-    
-    const body = {
-      correo: this.usuario,
-      contraseña: this.contrasena
-    };
+    const verificarUsuarioUrl =`${backendUrl}/usuario`;
+    const verificarTrabajadorUrl = `${backendUrl}/trabajador`; 
+    const body = {correo: this.usuario,contraseña: this.contrasena};
   
-    this.http.post(verificarUsuarioUrl, body).subscribe(
-      (response: any) => {
-        console.log('Respuesta del servidor:', response);
-  
-        if (response && response['existe']) {
-          this.router.navigate(['/tabs/tab4']);
-        } else {
-          this.mostrarAlerta('Usuario no encontrado', 'El usuario o la contraseña son incorrectos.');
-        }
-      },
-      (error) => {
-        console.error('Error al verificar usuario:', error);
+    this.http.post(verificarUsuarioUrl, body).subscribe((responseUsuario: any) => {
+      console.log('Respuesta del servidor (Usuario):', responseUsuario);
+      if (responseUsuario && responseUsuario['existe']) {
+        this.router.navigate(['/tabs/tab4']);
+      } else {
+        this.http.post(verificarTrabajadorUrl, body).subscribe((responseTrabajador: any) => {
+          console.log('Respuesta del servidor (Trabajador):', responseTrabajador);
+          if (responseTrabajador && responseTrabajador['existe']) {
+            this.router.navigate(['/tabs/tab11']);
+          } else {
+            this.mostrarAlerta('Usuario no encontrado', 'El usuario o la contraseña son incorrectos.');
+          }
+        },(errorTrabajador) => {
+          console.error('Error al verificar trabajador:', errorTrabajador);
+        });
       }
-    );
+    },(errorUsuario) => {
+      console.error('Error al verificar usuario:', errorUsuario);
+    });
   }
   
+  
+  validateEmail(email: string): boolean {
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return regex.test(email);
+  }
+
   async mostrarAlerta(titulo: string, mensaje: string) {
     const alert = await this.alertController.create({
       header: titulo,
       message: mensaje,
       buttons: ['OK']
     });
-  
+
     await alert.present();
   }
-  
+
   irARegistro() {
-    this.router.navigate(['/tabs/tab3']); 
+    this.router.navigate(['/tabs/tab3']);
   }
 }

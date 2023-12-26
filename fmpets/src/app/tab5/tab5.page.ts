@@ -19,6 +19,9 @@ export class DoctorService {
   createReservation(doctorId: string, date: string): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/reservations`, { doctorId, date });
   }
+  getAvailablePets(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/available-pets`);
+  }
 }
 
 @Component({
@@ -29,14 +32,21 @@ export class DoctorService {
 export class Tab5Page implements OnInit {
   public myDate: string = new Date().toISOString();
   public selectedDoctor: any; 
-  public doctors: any[] = []; 
-
+  public doctors: any[] = [];
+  public availablePets: any[] = []; 
+  public selectedPet: any;
+  
   constructor(private doctorService: DoctorService, private alertController: AlertController) { } 
 
   ngOnInit() {
-    this.getDoctors(); 
+    this.getDoctors();
+    this.getAvailablePets();
   }
-
+  getAvailablePets() {
+    this.doctorService.getAvailablePets().subscribe((pets) => {
+      this.availablePets = pets;
+    });
+  }
   getDoctors() {
     this.doctorService.getDoctors().subscribe((doctors) => {
       this.doctors = doctors;

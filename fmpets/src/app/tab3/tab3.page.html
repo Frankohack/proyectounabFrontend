@@ -10,29 +10,45 @@
       Completa tus datos para el registro
     </ion-card-header>
     <ion-card-content>
-      <ion-input placeholder="Nombres Dueno" [(ngModel)]="nombresDueno"></ion-input>
-      <ion-input placeholder="Apellidos Dueno" [(ngModel)]="apellidosDueno"></ion-input>
-      <ion-input placeholder="Nombre Mascota" [(ngModel)]="nombreMascota"></ion-input>
-      <ion-item>
-        <ion-label>Tipo de Animal</ion-label>
-        <ion-select [(ngModel)]="tipoAnimal">
-          <ion-select-option value="Perro">Perro</ion-select-option>
-          <ion-select-option value="Gato">Gato</ion-select-option>
-          <ion-select-option value="Hámster">Hámster</ion-select-option>
-          <ion-select-option value="Ratón">Ratón</ion-select-option>
-          <ion-select-option value="Conejo">Conejo</ion-select-option>
-          <ion-select-option value="Hurón">Hurón</ion-select-option>
-          <ion-select-option value="Camaleón">Camaleón</ion-select-option>
-          <ion-select-option value="Lagarto">Lagarto</ion-select-option>
-          <ion-select-option value="Animal acuático">Animal acuático</ion-select-option>
-        </ion-select>
-      </ion-item>
-      <ion-input placeholder="Run Mascota" [(ngModel)]="runMascota" type="number"pattern="[0-9]*" maxlength="15"></ion-input>
+      <ion-input placeholder="Nombres Dueño" [(ngModel)]="nombresDueno"></ion-input>
+      <ion-input placeholder="Apellidos Dueño" [(ngModel)]="apellidosDueno"></ion-input>
+      <ion-input placeholder="Número de Mascotas" [(ngModel)]="numeroMascotas" (ionChange)="actualizarMascotas()" type="number"></ion-input>
+      <div *ngFor="let mascota of mascotas; let i = index">
+        <ion-input placeholder="Nombre Mascota {{i+1}}" [(ngModel)]="mascotas[i].nombre"></ion-input>
+        <ion-item>
+          <ion-label>Tipo de Animal {{i+1}}</ion-label>
+          <ion-select [(ngModel)]="mascotas[i].tipo">
+            <ion-select-option value="Perro">Perro</ion-select-option>
+            <ion-select-option value="Gato">Gato</ion-select-option>
+            <ion-select-option value="Conejo">Conejo</ion-select-option>
+            <ion-select-option value="Hamters">Hamters</ion-select-option>
+            <ion-select-option value="Caballo">Caballo</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-input placeholder="Run Mascota {{i+1}}" [(ngModel)]="mascotas[i].run" type="number" pattern="[0-9]*" maxlength="15"></ion-input>
+      </div>
       <ion-input placeholder="Nickname" [(ngModel)]="nickname" type=></ion-input>
       <ion-input placeholder="Contrasena" [(ngModel)]="contrasena" type="password"></ion-input>
       <ion-input placeholder="RUT" [(ngModel)]="rutPropietario"></ion-input>
       <ion-input placeholder="Correo Electrónico" [(ngModel)]="correo" type="email"></ion-input>
-      <ion-input placeholder="Región" [(ngModel)]="region"></ion-input>
+      <ion-select [(ngModel)]="region">
+        <ion-select-option value="Arica">Arica y Parinacota</ion-select-option>
+        <ion-select-option value="Tarapacá">Tarapacá</ion-select-option>
+        <ion-select-option value="Antofagasta">Antofagasta</ion-select-option>
+        <ion-select-option value="Atacama">Atacama</ion-select-option>
+        <ion-select-option value="Coquimbo">Coquimbo</ion-select-option>
+        <ion-select-option value="Valparaíso">Valparaíso</ion-select-option>
+        <ion-select-option value="Metropolitana">Metropolitana</ion-select-option>
+        <ion-select-option value="O'Higgins">O'Higgins</ion-select-option>
+        <ion-select-option value="Maule">Maule</ion-select-option>
+        <ion-select-option value="Ñuble">Ñuble</ion-select-option>
+        <ion-select-option value="Biobio">Biobio</ion-select-option>
+        <ion-select-option value="Araucania">La Araucania</ion-select-option>
+        <ion-select-option value="Rios">Los Rios</ion-select-option>
+        <ion-select-option value="Lagos">Los Lagos</ion-select-option>
+        <ion-select-option value="Aysén">Aysén</ion-select-option>
+        <ion-select-option value="Magallanes">Magallanes</ion-select-option>
+      </ion-select>
       <ion-input placeholder="Comuna" [(ngModel)]="comuna"></ion-input>
       <ion-input placeholder="Dirección" [(ngModel)]="direccion"></ion-input>
       <ion-input placeholder="Número" [(ngModel)]="numero" type="number"></ion-input>

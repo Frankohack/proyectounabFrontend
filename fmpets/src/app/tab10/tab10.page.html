@@ -1,16 +1,26 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tab4"></ion-back-button> <!-- Flecha de volver atrás -->
-    </ion-buttons>
-    <ion-title>tab10</ion-title>
-  </ion-toolbar>
-</ion-header>
+<div class="container">
+  <ion-button routerLink="/tabs/tab4" fill="clear">
+    <ion-icon name="arrow-back"></ion-icon> Volver 
+  </ion-button>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">tab10</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+  <div class="card">
+    <h2>¿Quiénes somos?</h2>
+    <p>
+      Somos una aplicación dedicada a facilitar la gestión de reservas para clínicas veterinarias. Nuestra plataforma permite a los profesionales de la salud animal gestionar de manera eficiente sus citas y brindar un servicio más ágil y organizado a sus clientes.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>¿Cuánto cobramos?</h2>
+    <p>
+      Nuestra aplicación ofrece diferentes planes de suscripción adaptados a las necesidades de las clínicas veterinarias. Desde opciones gratuitas con funcionalidades básicas hasta planes premium con características avanzadas y soporte técnico personalizado.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Acceso a la aplicación</h2>
+    <p>
+      Para acceder a nuestra aplicación, ofrecemos perfiles diferenciados para trabajadores de clínicas veterinarias y usuarios finales. Los profesionales pueden registrarse y administrar sus servicios, mientras que los usuarios pueden registrarse para gestionar sus citas y acceder a información útil sobre la atención de sus mascotas.
+    </p>
+  </div>
+</div>

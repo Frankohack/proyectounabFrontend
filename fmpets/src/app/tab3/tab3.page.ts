@@ -11,9 +11,8 @@ import { AlertController } from '@ionic/angular';
 export class Tab3Page {
   nombresDueno: string = "";
   apellidosDueno: string = "";
-  nombreMascota: string ="";
-  tipoAnimal: string="";
-  runMascota: number= 0;
+  numeroMascotas: number = 1;
+  mascotas: { nombre: string, tipo: string, run: number }[] = [{ nombre: '', tipo: '', run: 0 }];
   nickname: string = "";
   contrasena: string = "";
   rutPropietario: string = "";
@@ -32,13 +31,18 @@ export class Tab3Page {
     private alertController: AlertController
   ) {}
 
+  actualizarMascotas() {
+    this.mascotas = [];
+    for (let i = 0; i < this.numeroMascotas; i++) {
+      this.mascotas.push({ nombre: '', tipo: '', run: 0 });
+    }
+  }
+
   registrarUsuario() {
     const nuevoUsuario = {
       nombresDueno: this.nombresDueno,
       apellidosDueno: this.apellidosDueno,
-      nombreMascota: this.nombreMascota,
-      tipoAnimal: this.tipoAnimal,
-      runMascota: this.runMascota,
+      mascotas: this.mascotas,
       nickname: this.nickname,
       contrasena: this.contrasena,
       rutPropietario: this.rutPropietario,
@@ -49,7 +53,6 @@ export class Tab3Page {
       direccion: this.direccion,
       numero: this.numero
     };
-  
 
     const backendUrl = 'http://localhost:3000';
     const registroUrl = `${backendUrl}/crear`;
@@ -84,7 +87,3 @@ export class Tab3Page {
     this.navCtrl.navigateForward('/tabs/tab2');
   }
 }
-
-
-
-

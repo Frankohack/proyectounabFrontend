@@ -1,23 +1,16 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tab4"></ion-back-button> <!-- Flecha de volver atrás -->
-    </ion-buttons>
-    <ion-title>Mis Reservas</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
   <ion-card *ngFor="let reservation of reservations">
     <ion-card-header>
-      <ion-card-title>{{ reservation.doctorName }}</ion-card-title>
+      <ion-card-title>{{ reservation.doctor }}</ion-card-title>
     </ion-card-header>
-
     <ion-card-content>
-      <p>Hora reservada para: {{ reservation.animalType }}</p>
-      <p>Nombre del animal: {{ reservation.animalName }}</p>
-      <p>Día y hora de la reserva: {{ reservation.date }}</p>
+      <ion-item>
+        <ion-label>
+          <h2>Hora reservada para: {{ reservation.date }}</h2>
+          <p>Nombre del usuario: {{ reservation.user }}</p>
+          <p>Nombre de la mascota: {{ reservation.mascota }}</p>
+        </ion-label>
+      </ion-item>
     </ion-card-content>
   </ion-card>
 </ion-content>
-
