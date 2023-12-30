@@ -31,15 +31,14 @@ export class Tab7Page implements OnInit {
   }
 
   getUserReservations() {
-   
-    const userId = '658a078267fd06b0f6698824'; 
-    this.reservationService.getUserReservations(userId).subscribe(
+    const userId = localStorage.getItem('userId'); 
+    this.reservationService.getUserReservations(userId!).subscribe(
       (reservations) => {
         this.reservations = reservations.map(reservation => ({
-          doctor: reservation.doctorId ? `${reservation.doctorId.nombres} ${reservation.doctorId.apellidos}` : '',
-          date: reservation.date, 
-          user: reservation.userId ? `${reservation.userId.nombresDueno}` : 'Nicole Belen Gonzalez Reyes',
-          mascota: reservation.mascotaId ? `${reservation.mascotaId.nombreMascota}` : 'Kiara',
+          doctor: reservation.doctor,
+          hora: reservation.hora, 
+          usuario: reservation.usuario,
+          mascota: reservation.mascota,
         }));
         console.log(this.reservations);
       },
