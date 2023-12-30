@@ -34,15 +34,12 @@ export class Tab11Page implements OnInit {
 
   loadReservations() {
     const backendUrl = 'http://localhost:3000';
-    const reservationsUrl = `${backendUrl}/reservations-doctor-details`;
+    const doctorId = localStorage.getItem('userId');
+    const reservationsUrl = `${backendUrl}/doctor/${doctorId}/reservas`;
 
     this.http.get<any[]>(reservationsUrl).subscribe((reservations: any[]) => {
       console.log(reservations);
-      this.reservations = reservations.map((reservation) => ({
-        doctor: reservation.doctorId
-          ? `${reservation.doctorId.nombres} ${reservation.doctorId.apellidos}`
-          : 'Nombre del doctor no disponible'
-      }));
+      this.reservations = reservations;
     });
   }
 

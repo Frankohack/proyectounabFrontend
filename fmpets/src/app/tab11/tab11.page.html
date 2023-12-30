@@ -37,7 +37,7 @@
           <ion-card-content>
             <ion-list>
               <ion-item *ngFor="let reservation of reservations">
-                {{ reservation.doctor }}
+                {{ reservation.mascota.nombreMascota }} {{ reservation.hora }}
               </ion-item>
             </ion-list>
           </ion-card-content>
