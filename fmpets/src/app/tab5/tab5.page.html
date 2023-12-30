@@ -19,7 +19,7 @@
   <ion-item>
     <ion-label>Mascota</ion-label>
     <ion-select [(ngModel)]="selectedPet">
-      <ion-select-option *ngFor="let pet of availablePets" [value]="pet._id">{{ pet.nombre }}</ion-select-option>
+      <ion-select-option *ngFor="let pet of availablePets" [value]="pet._id">{{ pet.nombreMascota }}</ion-select-option>
     </ion-select>
   </ion-item>
 

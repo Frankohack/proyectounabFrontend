@@ -16,11 +16,13 @@ export class DoctorService {
     return this.http.get<any>(`${this.apiUrl}/doctors`);
   }
 
-  createReservation(doctorId: string, date: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/reservations`, { doctorId, date });
+  createReservation(doctorId: string, hora: string, mascotaId: string): Observable<any> {
+    const userId = localStorage.getItem('userId');
+    return this.http.post<any>(`${this.apiUrl}/reservations`, { doctorId, hora, userId, mascotaId });
   }
   getAvailablePets(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/usuarios/:usuarioId/mascotas`);
+    const userId = localStorage.getItem('userId');
+    return this.http.get<any>(`${this.apiUrl}/usuarios/${userId}/mascotas`);
   }
 }
 
@@ -61,7 +63,7 @@ export class Tab5Page implements OnInit {
     }
 
     const isoDate = date.toISOString();
-    this.doctorService.createReservation(this.selectedDoctor, isoDate).subscribe(async (response) => {
+    this.doctorService.createReservation(this.selectedDoctor, isoDate, this.selectedPet).subscribe(async (response) => {
       console.log(response);
       const alert = await this.alertController.create({
         header: 'Reserva exitosa',
