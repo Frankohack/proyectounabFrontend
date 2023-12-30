@@ -20,7 +20,7 @@ export class DoctorService {
     return this.http.post<any>(`${this.apiUrl}/reservations`, { doctorId, date });
   }
   getAvailablePets(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/available-pets`);
+    return this.http.get<any>(`${this.apiUrl}/usuarios/:usuarioId/mascotas`);
   }
 }
 

@@ -7,6 +7,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { DoctorService } from './services/doctor.services'; // Asegúrate de que la ruta sea correcta
+import { AuthService } from './services/auth.service'; // Asegúrate de que la ruta sea correcta
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,10 +16,15 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     BrowserModule,
     IonicModule.forRoot(),
-    AppRoutingModule,FormsModule,
+    AppRoutingModule,
+    FormsModule,
     HttpClientModule,
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    DoctorService, // Incluye DoctorService aquí, dentro de providers
+    AuthService,   // Incluye AuthService aquí, dentro de providers
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

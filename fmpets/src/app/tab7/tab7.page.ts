@@ -1,5 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { ReservationService } from '../tab7/reservation.service';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ReservationService {
+  private apiUrl = 'http://localhost:3000'; 
+
+  constructor(private http: HttpClient) { }
+
+  getUserReservations(userId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/reservations-doctor-details?userId=${userId}`);
+  }
+}
 
 @Component({
   selector: 'app-tab7',
@@ -16,14 +31,15 @@ export class Tab7Page implements OnInit {
   }
 
   getUserReservations() {
-    const userId = 'yourUserId';
+   
+    const userId = '658a078267fd06b0f6698824'; 
     this.reservationService.getUserReservations(userId).subscribe(
       (reservations) => {
         this.reservations = reservations.map(reservation => ({
-          doctor: reservation.doctorId ? `${reservation.doctorId.nombres} ${reservation.doctorId.apellidos}` : 'Nombre del doctor no disponible',
-          date: reservation.date,
-          user: reservation.userId ? `${reservation.userId.nombresDueno}` : 'Nombre del usuario no disponible',
-          mascota: reservation.mascotaId ? `${reservation.mascotaId.nombreMascota}` : 'Nombre de la mascota no disponible',
+          doctor: reservation.doctorId ? `${reservation.doctorId.nombres} ${reservation.doctorId.apellidos}` : '',
+          date: reservation.date, 
+          user: reservation.userId ? `${reservation.userId.nombresDueno}` : 'Nicole Belen Gonzalez Reyes',
+          mascota: reservation.mascotaId ? `${reservation.mascotaId.nombreMascota}` : 'Kiara',
         }));
         console.log(this.reservations);
       },

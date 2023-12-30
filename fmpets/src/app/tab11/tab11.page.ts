@@ -11,8 +11,8 @@ export class Tab11Page implements OnInit {
   reservations: any[] = [];
   medicalRecords: any[] = [];
   pages = [
-    { title: 'Reservaciones', url: '/reservations', icon: 'calendar' },
-    { title: 'Historial Médico', url: '/medical-records', icon: 'medkit' },
+    { title: 'Reservaciones', url: '/reservaciones', icon: 'calendar' },
+    { title: 'Historial Médico', url: '/historial', icon: 'medkit' },
     { title: 'Citas Agendadas', url: '/scheduled-appointments', icon: 'calendar' },
     { title: 'Citas por Confirmar', url: '/appointments-to-confirm', icon: 'time' },
   ];
@@ -39,9 +39,10 @@ export class Tab11Page implements OnInit {
   loadMedicalRecords() {
     const backendUrl = 'http://localhost:3000';
     const medicalRecordsUrl = `${backendUrl}/medical-records/animalId`;
-
+  
     this.http.get<any[]>(medicalRecordsUrl).subscribe((records: any[]) => {
       this.medicalRecords = records;
     });
   }
 }
+  

@@ -37,6 +37,18 @@ const routes: Routes = [
   {
     path: 'tab11',
     loadChildren: () => import('./tab11/tab11.module').then( m => m.Tab11PageModule)
+  },
+  {
+    path: 'tab12',
+    loadChildren: () => import('./tab12/tab12.module').then( m => m.Tab12PageModule)
+  },
+  {
+    path: 'reservaciones',
+    loadChildren: () => import('./reservaciones/reservaciones.module').then( m => m.ReservacionesPageModule)
+  },
+  {
+    path: 'historial',
+    loadChildren: () => import('./historial/historial.module').then( m => m.HistorialPageModule)
   }
 ];
 

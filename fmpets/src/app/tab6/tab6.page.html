@@ -8,10 +8,17 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+
+  <ion-item class="notification-item">
+    <ion-label>
+      Bienvenido al sistema FmPets, este es un mensaje de prueba.
+    </ion-label>
+  </ion-item>
+
+ 
   <ion-list>
     <ion-item *ngFor="let notification of notifications">
       {{ notification }}
     </ion-item>
   </ion-list>
 </ion-content>
-  

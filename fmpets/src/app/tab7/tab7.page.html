@@ -1,3 +1,12 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tab4"></ion-back-button> 
+    </ion-buttons>
+    <ion-title>Mis Reservas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content [fullscreen]="true">
   <ion-card *ngFor="let reservation of reservations">
     <ion-card-header>
@@ -14,3 +23,5 @@
     </ion-card-content>
   </ion-card>
 </ion-content>
+
+

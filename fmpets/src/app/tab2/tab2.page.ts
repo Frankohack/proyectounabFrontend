@@ -33,11 +33,14 @@ export class Tab2Page {
     this.http.post(verificarUsuarioUrl, body).subscribe((responseUsuario: any) => {
       console.log('Respuesta del servidor (Usuario):', responseUsuario);
       if (responseUsuario && responseUsuario['existe']) {
+        console.log(responseUsuario)
+        localStorage.setItem('userId', responseUsuario.userId);
         this.router.navigate(['/tabs/tab4']);
       } else {
         this.http.post(verificarTrabajadorUrl, body).subscribe((responseTrabajador: any) => {
           console.log('Respuesta del servidor (Trabajador):', responseTrabajador);
           if (responseTrabajador && responseTrabajador['existe']) {
+            console.log(responseTrabajador)
             this.router.navigate(['/tabs/tab11']);
           } else {
             this.mostrarAlerta('Usuario no encontrado', 'El usuario o la contraseña son incorrectos.');

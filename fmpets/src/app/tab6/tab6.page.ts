@@ -12,8 +12,6 @@ export class Tab6Page implements OnInit {
   constructor(private notificationService: NotificationService) {}
 
   ngOnInit() {
-    this.notificationService.notifications.subscribe((notifications: string[]) => {
-      this.notifications = notifications;
-    });
+    this.notificationService.resetNotificationCount();
   }
 }

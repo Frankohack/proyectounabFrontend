@@ -26,7 +26,9 @@
       <ion-item routerLink="/tabs/tab6">
         <ion-icon slot="start" name="notifications-outline"></ion-icon>
         <ion-label>Notificaciones</ion-label>
+        <ion-badge *ngIf="notificationCount > 0" slot="end">{{ notificationCount }}</ion-badge>
       </ion-item>
+      
       <ion-item routerLink="/tabs/tab7">
         <ion-icon slot="start" name="albums-outline"></ion-icon>
         <ion-label>Mis Reservas</ion-label>
