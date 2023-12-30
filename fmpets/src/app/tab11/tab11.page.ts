@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-tab11',
   templateUrl: './tab11.page.html',
-  styleUrls: ['./tab11.page.scss'],
+  styleUrls: ['./tab11.page.scss']
 })
 export class Tab11Page implements OnInit {
   reservations: any[] = [];
@@ -13,8 +13,16 @@ export class Tab11Page implements OnInit {
   pages = [
     { title: 'Reservaciones', url: '/reservaciones', icon: 'calendar' },
     { title: 'Historial Médico', url: '/historial', icon: 'medkit' },
-    { title: 'Citas Agendadas', url: '/scheduled-appointments', icon: 'calendar' },
-    { title: 'Citas por Confirmar', url: '/appointments-to-confirm', icon: 'time' },
+    {
+      title: 'Citas Agendadas',
+      url: '/scheduled-appointments',
+      icon: 'calendar'
+    },
+    {
+      title: 'Citas por Confirmar',
+      url: '/appointments-to-confirm',
+      icon: 'time'
+    }
   ];
 
   constructor(private http: HttpClient) {}
@@ -27,22 +35,24 @@ export class Tab11Page implements OnInit {
   loadReservations() {
     const backendUrl = 'http://localhost:3000';
     const reservationsUrl = `${backendUrl}/reservations-doctor-details`;
-  
+
     this.http.get<any[]>(reservationsUrl).subscribe((reservations: any[]) => {
-      console.log(reservations); 
-      this.reservations = reservations.map(reservation => ({
-        doctor: reservation.doctorId ? `${reservation.doctorId.nombres} ${reservation.doctorId.apellidos}` : 'Nombre del doctor no disponible',
+      console.log(reservations);
+      this.reservations = reservations.map((reservation) => ({
+        doctor: reservation.doctorId
+          ? `${reservation.doctorId.nombres} ${reservation.doctorId.apellidos}`
+          : 'Nombre del doctor no disponible'
       }));
     });
   }
 
   loadMedicalRecords() {
     const backendUrl = 'http://localhost:3000';
-    const medicalRecordsUrl = `${backendUrl}/medical-records/animalId`;
-  
+    const doctorId = localStorage.getItem('userId');
+    const medicalRecordsUrl = `${backendUrl}/doctor/${doctorId}/medical-records`;
+
     this.http.get<any[]>(medicalRecordsUrl).subscribe((records: any[]) => {
       this.medicalRecords = records;
     });
   }
 }
-  

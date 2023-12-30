@@ -1,12 +1,9 @@
-
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>
-      Inicio
-    </ion-title>
+    <ion-title> Inicio </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-menu side="start" contentId="main-content">
@@ -20,9 +17,7 @@
       <ion-menu-toggle auto-hide="false" *ngFor="let p of pages">
         <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
           <ion-icon slot="start" [name]="p.icon"></ion-icon>
-          <ion-label>
-            {{p.title}}
-          </ion-label>
+          <ion-label> {{p.title}} </ion-label>
         </ion-item>
       </ion-menu-toggle>
     </ion-list>
@@ -57,8 +52,9 @@
             <ion-list>
               <ion-item *ngFor="let record of medicalRecords">
                 <ion-label>
-                  <h2>{{ record.patientName }}</h2>
-                  <p>{{ record.diagnosis }}</p>
+                  <h2>{{ record.mascota.nombreMascota }}</h2>
+                  <p>{{ record.descripcion }}</p>
+                  <p>{{ record.hora }}</p>
                 </ion-label>
               </ion-item>
             </ion-list>
@@ -68,4 +64,3 @@
     </ion-row>
   </ion-grid>
 </ion-content>
-

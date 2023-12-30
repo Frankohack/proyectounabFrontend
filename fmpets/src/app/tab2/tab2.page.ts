@@ -11,10 +11,15 @@ import { AlertController } from '@ionic/angular';
 })
 export class Tab2Page {
   showPassword: boolean = false;
-  usuario: string = "";
-  contrasena: string = "";
+  usuario: string = '';
+  contrasena: string = '';
 
-  constructor(private http: HttpClient, private navCtrl: NavController, private router: Router, private alertController: AlertController) {}
+  constructor(
+    private http: HttpClient,
+    private navCtrl: NavController,
+    private router: Router,
+    private alertController: AlertController
+  ) {}
 
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
@@ -22,38 +27,52 @@ export class Tab2Page {
 
   enviarSolicitud() {
     if (!this.validateEmail(this.usuario)) {
-      this.mostrarAlerta('Correo inválido', 'Por favor, ingresa un correo electrónico válido.');
+      this.mostrarAlerta(
+        'Correo inválido',
+        'Por favor, ingresa un correo electrónico válido.'
+      );
       return;
     }
     const backendUrl = 'http://localhost:3000';
-    const verificarUsuarioUrl =`${backendUrl}/usuario`;
-    const verificarTrabajadorUrl = `${backendUrl}/trabajador`; 
-    const body = {correo: this.usuario,contraseña: this.contrasena};
-  
-    this.http.post(verificarUsuarioUrl, body).subscribe((responseUsuario: any) => {
-      console.log('Respuesta del servidor (Usuario):', responseUsuario);
-      if (responseUsuario) {
-        localStorage.setItem('userId', responseUsuario.id);
-        this.router.navigate(['/tabs/tab4']);
-      } else {
-        this.http.post(verificarTrabajadorUrl, body).subscribe((responseTrabajador: any) => {
-          console.log('Respuesta del servidor (Trabajador):', responseTrabajador);
-          if (responseTrabajador && responseTrabajador['existe']) {
-            console.log(responseTrabajador)
-            this.router.navigate(['/tabs/tab11']);
-          } else {
-            this.mostrarAlerta('Usuario no encontrado', 'El usuario o la contraseña son incorrectos.');
-          }
-        },(errorTrabajador) => {
-          console.error('Error al verificar trabajador:', errorTrabajador);
-        });
+    const verificarUsuarioUrl = `${backendUrl}/usuario`;
+    const verificarTrabajadorUrl = `${backendUrl}/trabajador`;
+    const body = { correo: this.usuario, contrasena: this.contrasena };
+
+    this.http.post(verificarUsuarioUrl, body).subscribe(
+      (responseUsuario: any) => {
+        console.log('Respuesta del servidor (Usuario):', responseUsuario);
+        if (responseUsuario) {
+          localStorage.setItem('userId', responseUsuario.id);
+          this.router.navigate(['/tabs/tab4']);
+        } else {
+          this.http.post(verificarTrabajadorUrl, body).subscribe(
+            (responseTrabajador: any) => {
+              console.log(
+                'Respuesta del servidor (Trabajador):',
+                responseTrabajador
+              );
+              if (responseTrabajador) {
+                localStorage.setItem('userId', responseTrabajador.id);
+                this.router.navigate(['/tabs/tab11']);
+              } else {
+                this.mostrarAlerta(
+                  'Usuario no encontrado',
+                  'El usuario o la contraseña son incorrectos.'
+                );
+              }
+            },
+            (errorTrabajador) => {
+              console.error('Error al verificar trabajador:', errorTrabajador);
+            }
+          );
+        }
+      },
+      (errorUsuario) => {
+        console.error('Error al verificar usuario:', errorUsuario);
       }
-    },(errorUsuario) => {
-      console.error('Error al verificar usuario:', errorUsuario);
-    });
+    );
   }
-  
-  
+
   validateEmail(email: string): boolean {
     const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return regex.test(email);
