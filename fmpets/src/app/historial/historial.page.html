@@ -1,24 +1,49 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tab11"></ion-back-button> 
+      <ion-back-button defaultHref="/tab11"></ion-back-button>
     </ion-buttons>
     <ion-title>Historial Medico</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card *ngFor="let record of medicalRecords">
-    <ion-card-header>
-      <ion-card-title>{{ record.doctor }}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-item>
-        <ion-label>
-          <p>Nombre de la mascota: {{ record.mascota }}</p>
-          <p>Descripción: {{ record.description }}</p>
-        </ion-label>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
+  <ion-item>
+    <ion-label>Seleccionar Reserva</ion-label>
+    <ion-select
+      placeholder="Seleccione una reserva"
+      interface="popover"
+      [(ngModel)]="selectedReservation"
+    >
+      <ion-select-option
+        *ngFor="let reservation of reservations"
+        [value]="reservation.id"
+      >
+        {{ reservation.mascota.nombreMascota}} - {{ reservation.hora |
+        date:'medium' }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-list>
+    <ion-card *ngFor="let reservation of reservations">
+      <ion-card-header>
+        <ion-card-title>{{ reservation.mascota.nombreMascota }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-input
+            type="text"
+            placeholder="Añadir descripción"
+            [(ngModel)]="reservation.newDescription"
+          ></ion-input>
+        </ion-item>
+        <ion-button
+          (click)="enviarDescripcion(reservation.id, reservation.newDescription)"
+        >
+          Enviar
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
 </ion-content>

@@ -9,18 +9,20 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
-  nombresDueno: string = "";
-  apellidosDueno: string = "";
+  nombresDueno: string = '';
+  apellidosDueno: string = '';
   numeroMascotas: number = 1;
-  mascotas: { nombre: string, tipo: string, run: number }[] = [{ nombre: '', tipo: '', run: 0 }];
-  nickname: string = "";
-  contrasena: string = "";
-  rutPropietario: string = "";
-  correo: string ="";
+  mascotas: { nombreMascota: string; tipoAnimal: string; run: number }[] = [
+    { nombreMascota: '', tipoAnimal: '', run: 0 }
+  ];
+  nickname: string = '';
+  contrasena: string = '';
+  rutPropietario: string = '';
+  correo: string = '';
   telefono: number = 0;
-  region: string = "";
-  comuna: string = "";
-  direccion: string = "";
+  region: string = '';
+  comuna: string = '';
+  direccion: string = '';
   numero: number = 0;
 
   registroExitoso: boolean = false;
@@ -34,7 +36,7 @@ export class Tab3Page {
   actualizarMascotas() {
     this.mascotas = [];
     for (let i = 0; i < this.numeroMascotas; i++) {
-      this.mascotas.push({ nombre: '', tipo: '', run: 0 });
+      this.mascotas.push({ nombreMascota: '', tipoAnimal: '', run: 0 });
     }
   }
 
@@ -70,9 +72,9 @@ export class Tab3Page {
               text: 'Ingresar',
               handler: () => {
                 this.irAPagina2();
-              },
-            },
-          ],
+              }
+            }
+          ]
         });
 
         await alert.present();

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { NotificationService } from '../tab6/notification.service'; // Asegúrate de importar correctamente
+import { NotificationService } from '../tab6/notification.service';
 
 @Component({
   selector: 'app-tab4',
@@ -12,14 +12,15 @@ export class Tab4Page implements OnInit {
 
   constructor(
     private navCtrl: NavController,
-    private notificationService: NotificationService // Inyecta el NotificationService
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit() {
-    this.notificationService.getNotificationCount().subscribe((count: number) => {
-      this.notificationCount = count;
-    });
-    
+    this.notificationService
+      .getNotificationCount()
+      .subscribe((count: number) => {
+        this.notificationCount = count;
+      });
   }
 
   irAInicio() {
@@ -41,6 +42,4 @@ export class Tab4Page implements OnInit {
   irAPerfil() {
     this.navCtrl.navigateRoot('/tabs/tab8');
   }
-  
 }
-

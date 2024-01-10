@@ -1,8 +1,25 @@
-body {
-    background: linear-gradient(to bottom, #3c91e6, #1974bb);
-    background-attachment: fixed;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-blend-mode: multiply;
+ion-grid {
+  ion-row {
+    display: block;
+
+    ion-col {
+      width: 100%;
+      margin-bottom: 10px; // Espaciado entre tarjetas
+    }
   }
-  
+}
+
+// Estilos adicionales para la tarjeta
+ion-card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+// Estilo de fondo global se debe definir fuera del scope de la página
+body {
+  background: linear-gradient(to bottom, #3c91e6, #1974bb);
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-blend-mode: multiply;
+}

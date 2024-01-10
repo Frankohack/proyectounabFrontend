@@ -22,6 +22,11 @@ export class Tab11Page implements OnInit {
       title: 'Citas por Confirmar',
       url: '/appointments-to-confirm',
       icon: 'time'
+    },
+    {
+      title: 'Cerrar Sesion',
+      url: '/tabs/tab2',
+      icon: 'log-out'
     }
   ];
 
